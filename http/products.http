@@ -1,0 +1,90 @@
+### 
+
+@baseUrl = http://localhost:8080
+
+
+### Health Check
+
+GET {{baseUrl}}/health HTTP/1.1
+
+
+### List all products
+
+GET {{baseUrl}}/products HTTP/1.1
+
+
+### Get product by ID
+
+GET {{baseUrl}}/products/product-123 HTTP/1.1
+
+
+### Create a new product
+
+POST {{baseUrl}}/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "created_at": 1738944000,
+  "id": "product-123",
+  "name": "Apple",
+  "price_in_cents": 250,
+  "quantity": 10
+}
+
+
+### Create another product
+
+POST {{baseUrl}}/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "created_at": 1738944000,
+  "id": "product-456",
+  "name": "Banana",
+  "price_in_cents": 150,
+  "quantity": 20
+}
+
+
+### Create product with high price
+
+POST {{baseUrl}}/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "created_at": 1738944000,
+  "id": "product-789",
+  "name": "Premium Organic Avocado",
+  "price_in_cents": 499,
+  "quantity": 5
+}
+
+
+### Create product - Invalid JSON (should return 400)
+
+POST {{baseUrl}}/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": "invalid
+  "name": "Broken Product"
+}
+
+
+### Create product - Zero quantity
+
+POST {{baseUrl}}/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": "product-zero",
+  "name": "Out of Stock Item",
+  "price_in_cents": 100,
+  "quantity": 0,
+  "created_at": 1738944000
+}
+
+
+### Get non-existent product (should return 404)
+
+GET {{baseUrl}}/products/non-existent-id HTTP/1.1
