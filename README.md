@@ -38,7 +38,7 @@ brew install goose
 
 ```bash
 git clone <repository-url>
-cd shopping-list
+cd go-api
 ```
 
 ### 2. Install Go Dependencies

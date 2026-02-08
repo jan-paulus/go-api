@@ -1,0 +1,43 @@
+# Git files
+.git
+.gitignore
+
+# Local database files
+*.db
+*.db-shm
+*.db-wal
+products.db*
+
+# Environment files
+.env
+.env.*
+
+# Documentation and testing
+README.md
+*.md
+rest/
+http/
+*.http
+
+# Generated files (will be regenerated in container)
+internal/adapters/sqlite/sqlc/*.go
+!internal/adapters/sqlite/sqlc/queries.sql
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+*.exe
+*.test
+*.out
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local data directories
+data/

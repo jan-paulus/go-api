@@ -5,4 +5,5 @@
 
 .env
 
-
+# Docker volumes and data
+data/

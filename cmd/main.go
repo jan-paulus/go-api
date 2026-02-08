@@ -8,6 +8,14 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// getEnv retrieves an environment variable or returns a default value
+func getEnv(key, defaultValue string) string {
+	if value := os.Getenv(key); value != "" {
+		return value
+	}
+	return defaultValue
+}
+
 func main() {
 	cfg := config{
 		addr: ":8080",
@@ -18,10 +26,13 @@ func main() {
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
 
-	logger.Info("Connecting to database...")
+	// Get database path from environment or use default
+	dbPath := getEnv("DB_PATH", "products.db")
+
+	logger.Info("Connecting to database...", "path", dbPath)
 
 	// Database
-	conn, err := sql.Open("sqlite3", "products.db")
+	conn, err := sql.Open("sqlite3", dbPath)
 	if err != nil {
 		slog.Error("Failed to connect to database.", "error", err)
 		os.Exit(1)
